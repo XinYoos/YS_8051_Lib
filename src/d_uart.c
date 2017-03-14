@@ -60,7 +60,7 @@ void fn_SendString_puc(unsigned char *pa_pucStr)
     }
 }
 /**
- * [Debug_PrintfDebug_pi 监控变量的值并向串口发送]
+ * [Debug_PrintfDebug_pi 监控int型变量的值并向串口发送]
  * @Author   YS
  * @DateTime 2017-02-28T15:38:31+0800
  * @param    pa_piPrintdVariable       :需监控的变量,&int
@@ -81,7 +81,28 @@ void Debug_PrintfDebug_pi(int* pa_piPrintdVariable)
     fn_SendString_puc("/*=====DebugOver=====*/\n");
 }
 /**
- * [fn_PrintStr_pi 执行一次Printf函数，发送相应的变量值]
+ * [Debug_PrintfDebug_pi 监控unChar型变量的值并向串口发送]
+ * @Author   YS
+ * @DateTime 2017-02-28T15:38:31+0800
+ * @param    pa_piPrintdVariable       :需监控的变量,&unChar
+ */
+void Debug_PrintfDebug_puc(unsigned char *pa_piPrintdVariable)
+{
+    unsigned char m_iVal;
+    m_iVal = *pa_piPrintdVariable;
+
+    fn_SendString_puc(" \n");
+    fn_SendString_puc("/========Debug=========/\n");
+
+    TI = 1;
+    printf("可改名:值为%d\n", m_iVal);
+    while(!TI);
+    TI = 0;
+
+    fn_SendString_puc("/*=====DebugOver=====*/\n");
+}
+/**
+ * [fn_PrintStr_pi 执行一次Printf函数，发送实参int型变量值]
  * @Author   YS
  * @DateTime 2017-03-07T15:59:23+0800
  * @param    pa_piPrintdVariable      ：要发送的变量值,&int
@@ -92,12 +113,26 @@ void fn_PrintStr_pi(int* pa_piPrintdVariable)
     m_iVal = *pa_piPrintdVariable;
 
 	TI = 1;
-	printf("可改名:值为%d\n", m_iVal);
+	printf("%d\n", m_iVal);
 	while(!TI);
 	TI = 0;
 }
+/**
+ * [fn_PrintStr_pi 执行一次Printf函数，发送实参unChar型变量值]
+ * @Author   YS
+ * @DateTime 2017-03-07T15:59:23+0800
+ * @param    pa_piPrintdVariable      ：要发送的变量值,&unChar
+ */
+void fn_PrintStr_puc(unsigned char* pa_piPrintdVariable)
+{
+	unsigned char m_iVal;
+    m_iVal = *pa_piPrintdVariable;
 
-
+	TI = 1;
+	printf("%d\n", m_iVal);
+	while(!TI);
+	TI = 0;
+}
 /**
  *
  *

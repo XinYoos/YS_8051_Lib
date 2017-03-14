@@ -2,7 +2,9 @@
 
 #define IIC_WRITE 0x00
 #define IIC_READ  0x01
-
+/**
+ * 硬件设计决定：SCL和SDA
+ */
 sbit hp_IIC_SCL = P2^0;
 sbit hp_IIC_SDA = P2^1;
 
@@ -53,6 +55,7 @@ bit bp_iicJudgeACK(void)
 		m_btACK = hp_IIC_SDA;
 	}
 	hp_IIC_SCL = 0;
+	fn_Delay5US();
 	return m_btACK;//0有应答，1无应答
 }
 
